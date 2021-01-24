@@ -73,7 +73,7 @@ const IndexChatContainer = () => {
             chats.length > 0 &&
             chats.map((v) => {
               let imageData = null
-              if (v.email === loginData.email) {
+              if (v && v.email && v.email === loginData.email) {
                 if (v.message.includes('image-')) {
                   const messageObj = v.message.split('image-')
                   imageData = messageObj[1]
@@ -124,7 +124,7 @@ const IndexChatContainer = () => {
                   </View>
                 )
               } else {
-                if (v.message.includes('image-')) {
+                if (v && v.message && v.message.includes('image-')) {
                   const messageObj = v.message.split('image-')
                   imageData = messageObj[1]
                 }
@@ -185,12 +185,14 @@ const IndexChatContainer = () => {
                   quality: 0.3,
                 },
                 (value) => {
-                  const payload = {
-                    name: loginData.name,
-                    email: loginData.email,
-                    message: `image-${value.base64}`,
+                  if (value.base64 !== '' && value.base64 !== null) {
+                    const payload = {
+                      name: loginData.name,
+                      email: loginData.email,
+                      message: `image-${value.base64}`,
+                    }
+                    dispatch(PostChat.action(payload))
                   }
-                  dispatch(PostChat.action(payload))
                 }
               )
             }}
