@@ -6,9 +6,7 @@ import { useTheme } from '@/Theme'
 import { useTranslation } from 'react-i18next'
 import ChangeTheme from '@/Store/Theme/ChangeTheme'
 import DoLogout from '@/Store/Login/DoLogout'
-import SaveToken from '@/Store/Login/SaveToken'
 import { navigateAndSimpleReset } from '@/Navigators/Root'
-import { GoogleSignin, statusCodes } from '@react-native-community/google-signin'
 
 const IndexProfileContainer = () => {
   const { t } = useTranslation()
@@ -16,16 +14,6 @@ const IndexProfileContainer = () => {
   const dispatch = useDispatch()
 
   const loginData = useSelector((state) => state.login.item)
-  const loginError = useSelector((state) => state.login.doLogin.error)
-
-  const [userId, setUserId] = useState('1')
-
-  const [username, changeUsername] = useState(null)
-  const [password, changePassword] = useState(null)
-
-  const changeTheme = ({ theme, darkMode }) => {
-    dispatch(ChangeTheme.action({ theme, darkMode }))
-  }
 
   useEffect(() => {
     console.log(loginData)

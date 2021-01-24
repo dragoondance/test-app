@@ -8,7 +8,6 @@ import ChangeTheme from '@/Store/Theme/ChangeTheme'
 import DoLogin from '@/Store/Login/DoLogin'
 import SaveToken from '@/Store/Login/SaveToken'
 import { navigateAndSimpleReset } from '@/Navigators/Root'
-import { GoogleSignin, statusCodes } from '@react-native-community/google-signin'
 
 const IndexLoginContainer = () => {
   const { t } = useTranslation()
