@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { IndexExampleContainer } from '@/Containers'
+import { IndexExampleContainer, IndexProfileContainer, IndexChatContainer } from '@/Containers'
 
 const Tab = createBottomTabNavigator()
 
@@ -9,6 +9,7 @@ const MainNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={IndexExampleContainer} />
+      <Tab.Screen name="Profile" component={IndexProfileContainer} />
     </Tab.Navigator>
   )
 }

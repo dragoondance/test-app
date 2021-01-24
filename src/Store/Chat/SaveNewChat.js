@@ -4,8 +4,7 @@ export default {
   initialState: {},
   action: createAction('login/saveToken'),
   reducers(state, { payload }) {
-    if (typeof payload.token !== 'undefined') {
-      state.token = payload.token
-    }
+    state.item.push(payload)
+    state.newChat = null
   },
 }

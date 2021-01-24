@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
-import { IndexStartupContainer, IndexLoginContainer } from '@/Containers'
+import { createStackNavigator, LogoTitle } from '@react-navigation/stack'
+import { IndexStartupContainer, IndexLoginContainer, IndexChatContainer } from '@/Containers'
 import { useSelector } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native'
-import { navigationRef } from '@/Navigators/Root'
-import { SafeAreaView, StatusBar } from 'react-native'
+import { navigationRef, goBack } from '@/Navigators/Root'
+import { SafeAreaView, StatusBar, Button } from 'react-native'
 import { useTheme } from '@/Theme'
 import { AppearanceProvider } from 'react-native-appearance'
 
@@ -33,7 +33,6 @@ const ApplicationNavigator = () => {
           <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
           <Stack.Navigator headerMode={'none'}>
             <Stack.Screen name="Startup" component={IndexStartupContainer} />
-            <Stack.Screen name="Login" component={IndexLoginContainer} />
             {isApplicationLoaded && (
               <Stack.Screen
                 name="Main"
@@ -43,6 +42,8 @@ const ApplicationNavigator = () => {
                 }}
               />
             )}
+            <Stack.Screen name="Chat" component={IndexChatContainer} />
+            <Stack.Screen name="Login" component={IndexLoginContainer} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

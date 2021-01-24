@@ -16,17 +16,19 @@ const IndexStartupContainer = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log('testttt')
+    console.log({ token })
     if (token === null) {
       dispatch(Auth.action())
     } else {
       dispatch(InitStartup.action())
     }
-  }, [dispatch])
+  }, [])
 
   return (
     <View style={[Layout.fill, Layout.colCenter]}>
       <Brand />
-      <ActivityIndicator size={'large'} style={[Gutters.largeVMargin]} />
+      <ActivityIndicator size={'large'} style={Gutters.largeVMargin} />
       <Text style={Fonts.textCenter}>{t('welcome')}</Text>
     </View>
   )

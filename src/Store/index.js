@@ -16,18 +16,20 @@ import startup from './Startup'
 import user from './User'
 import theme from './Theme'
 import login from './Login'
+import chat from './Chat'
 
 const reducers = combineReducers({
   startup,
   user,
   theme,
   login,
+  chat,
 })
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['theme'],
+  whitelist: ['theme', 'login'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)

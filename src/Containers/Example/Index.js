@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { View, ActivityIndicator, Text, TextInput, Button } from 'react-native'
 import { Brand } from '@/Components'
 import { useTheme } from '@/Theme'
+import { navigate } from '@/Navigators/Root'
 import FetchOne from '@/Store/User/FetchOne'
 import { useTranslation } from 'react-i18next'
 import ChangeTheme from '@/Store/Theme/ChangeTheme'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const IndexExampleContainer = () => {
   const { t } = useTranslation()
@@ -13,37 +15,14 @@ const IndexExampleContainer = () => {
   const dispatch = useDispatch()
   const token = useSelector((state) => state.login.token)
 
-  const user = useSelector((state) => state.user.item)
-  const fetchOneUserLoading = useSelector(
-    (state) => state.user.fetchOne.loading,
-  )
-  const fetchOneUserError = useSelector((state) => state.user.fetchOne.error)
-
-  const [userId, setUserId] = useState('1')
-
-  const fetch = (id) => {
-    setUserId(id)
-    dispatch(FetchOne.action(id))
-  }
-
   useEffect(() => {
     console.log(token)
   }, [])
 
-  const changeTheme = ({ theme, darkMode }) => {
-    dispatch(ChangeTheme.action({ theme, darkMode }))
-  }
-
   return (
     <View style={[Layout.fill, Layout.colCenter, Gutters.smallHPadding]}>
-      <View style={[[Layout.colCenter, Gutters.smallHPadding]]}>
+      <View style={[Layout.colCenter, Gutters.smallHPadding]}>
         <Brand />
-        {fetchOneUserLoading && <ActivityIndicator />}
-        {fetchOneUserError ? (
-          <Text style={Fonts.textRegular}>{fetchOneUserError.message}</Text>
-        ) : (
-          <Text style={Fonts.textRegular}>{t('example.helloUser', { name: user.name })}</Text>
-        )}
       </View>
       <View
         style={[
@@ -53,24 +32,22 @@ const IndexExampleContainer = () => {
           Gutters.largeVMargin,
           Common.backgroundPrimary,
         ]}
+      ></View>
+      <TouchableOpacity
+        onPress={() => {
+          navigate('Chat')
+        }}
+        style={{
+          backgroundColor: 'blue',
+          paddingVertical: 16,
+          paddingHorizontal: 24,
+          borderRadius: 12,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
-        <Text style={[Layout.fill, Fonts.textCenter]}>
-          {t('example.labels.userId')}
-        </Text>
-        <TextInput
-          onChangeText={(text) => fetch(text)}
-          editable={!fetchOneUserLoading}
-          keyboardType={'number-pad'}
-          maxLength={1}
-          value={userId}
-          selectTextOnFocus
-          style={[Layout.fill, Common.textInput]}
-        />
-      </View>
-      <Text style={Fonts.textRegular}>DarkMode :</Text>
-      <Button onPress={() => changeTheme({ darkMode: null })} title="Auto" />
-      <Button onPress={() => changeTheme({ darkMode: true })} title="Dark" />
-      <Button onPress={() => changeTheme({ darkMode: false })} title="Light" />
+        <Text style={{ fontSize: 14, fontWeight: 'bold', color: 'white' }}>Chat</Text>
+      </TouchableOpacity>
     </View>
   )
 }
