@@ -11,6 +11,5 @@ export default async (value) => {
     },
   }
   const response = await api.post(`q`, payload)
-  console.log({ response })
   return response.data
 }

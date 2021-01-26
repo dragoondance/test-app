@@ -6,21 +6,18 @@ import {
   Text,
   TextInput,
   Image,
-  Button,
   TouchableOpacity,
   ScrollView,
 } from 'react-native'
 import { useTheme } from '@/Theme'
-import { useTranslation } from 'react-i18next'
 import FetchAllChats from '@/Store/Chat/FetchAllChats'
 import PostChat from '@/Store/Chat/PostChat'
 import SaveNewChat from '@/Store/Chat/SaveNewChat'
 import { goBack } from '../../Navigators/Root'
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
+import { launchImageLibrary } from 'react-native-image-picker'
 
 const IndexChatContainer = () => {
-  const { t } = useTranslation()
-  const { Common, Fonts, Gutters, Layout } = useTheme()
+  const { Gutters, Layout } = useTheme()
   const dispatch = useDispatch()
 
   const loginData = useSelector((state) => state.login.item)

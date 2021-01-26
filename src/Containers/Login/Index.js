@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { View, ActivityIndicator, Text, TextInput, Button, TouchableOpacity } from 'react-native'
+import { View, ActivityIndicator, Text, TextInput, TouchableOpacity } from 'react-native'
 import { Brand } from '@/Components'
 import { useTheme } from '@/Theme'
 import { useTranslation } from 'react-i18next'

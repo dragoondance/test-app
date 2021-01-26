@@ -16,8 +16,6 @@ const IndexStartupContainer = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('testttt')
-    console.log({ token })
     if (token === null) {
       dispatch(Auth.action())
     } else {
